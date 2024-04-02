@@ -1,0 +1,18 @@
+POST http://localhost:3333/events
+Content-Type: application/json
+
+{
+  "title": "Unite Summit 2027",
+  "details": "Um evento para quem é apaixonado por programação",
+  "maximumAttendees": 1
+}
+
+###
+
+POST http://localhost:3333/events/ce51712e-dfa7-4584-aa16-e0fc9193db9d/attendees
+Content-Type: application/json
+
+{
+  "name": "Ricardo Monteiro",
+  "email": "rcmonteiro+2@gmail.com"
+}
