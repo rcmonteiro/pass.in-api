@@ -16,3 +16,11 @@ Content-Type: application/json
   "name": "Ricardo Monteiro",
   "email": "rcmonteiro+2@gmail.com"
 }
+
+###
+
+GET http://localhost:3333/events/ce51712e-dfa7-4584-aa16-e0fc9193db9d
+
+###
+
+GET http://localhost:3333/attendees/2/badge
