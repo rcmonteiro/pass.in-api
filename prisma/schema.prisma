@@ -20,6 +20,7 @@ model Event {
 
 model Attendee {
   id        Int      @id @default(autoincrement())
+  public_id String
   name      String
   email     String
   createdAt DateTime @default(now()) @map("created_at")

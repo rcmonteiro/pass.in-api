@@ -1,5 +1,6 @@
 import { FastifyInstance } from "fastify"
 import { ZodTypeProvider } from "fastify-type-provider-zod"
+import { customAlphabet } from "nanoid"
 import { z } from "zod"
 import { prisma } from "../lib/prisma"
 
@@ -56,10 +57,14 @@ export const registerForEvent = async (app: FastifyInstance) => {
         throw new Error("The maximum number of attendees for this event has been reached")
       }
 
+      const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVXZ', 6)
+      const public_id = nanoid()
+
       const attendee = await prisma.attendee.create({
         data: {
           name,
           email,
+          public_id,
           eventId
         }
       })

@@ -20,6 +20,7 @@ export const getAttendeeBadge = async (app: FastifyInstance) => {
         select: {
           name: true,
           email: true,
+          public_id: true,
           event: {
             select: {
               title: true
