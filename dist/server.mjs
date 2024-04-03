@@ -1,27 +1,27 @@
 import {
+  registerForEvent
+} from "./chunk-SD76TUVB.mjs";
+import {
   errorHandler
 } from "./chunk-V2JRBESW.mjs";
 import {
   checkIn
-} from "./chunk-5QY7ER47.mjs";
+} from "./chunk-OCPPXHD4.mjs";
 import {
   createEvent
-} from "./chunk-N2B6NICL.mjs";
+} from "./chunk-66HTNS5P.mjs";
 import "./chunk-KDMJHR3Z.mjs";
 import {
   getAttendeeBadge
-} from "./chunk-CR2BJ2LL.mjs";
+} from "./chunk-BRTDUGFL.mjs";
 import {
   getEventAttendees
-} from "./chunk-K7LMDMGH.mjs";
+} from "./chunk-6SCJMLYN.mjs";
 import {
   getEvents
-} from "./chunk-2M7M2XJX.mjs";
-import {
-  registerForEvent
-} from "./chunk-6L2PZQTP.mjs";
-import "./chunk-JV6GRE7Y.mjs";
+} from "./chunk-ERX6CAJB.mjs";
 import "./chunk-JRO4E4TH.mjs";
+import "./chunk-JV6GRE7Y.mjs";
 
 // src/server.ts
 import { fastifyCors } from "@fastify/cors";

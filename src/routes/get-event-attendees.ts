@@ -54,39 +54,45 @@ export const getEventAttendees = async (app: FastifyInstance) => {
         throw new BadRequest("Event not found")
       }
 
-      const attendees = await prisma.attendee.findMany({
-        select: {
-          id: true,
-          public_id: true,
-          name: true,
-          email: true,
-          createdAt: true,
-          checkIn: {
-            select: {
-              createdAt: true
+      const [attendees, attendeesCount] = await Promise.all([
+        prisma.attendee.findMany({
+          select: {
+            id: true,
+            public_id: true,
+            name: true,
+            email: true,
+            createdAt: true,
+            checkIn: {
+              select: {
+                createdAt: true
+              }
             }
+          },
+          where: query ? {
+            eventId,
+            name: {
+              contains: query
+            }
+          } : {
+            eventId
+          },
+          take: perPage,
+          skip: pageIndex * perPage,
+          orderBy: {
+            createdAt: 'desc'
           }
-        },
-        where: query ? {
-          eventId,
-          name: {
-            contains: query
+        }),
+        prisma.attendee.count({
+          where: query ? {
+            eventId,
+            name: {
+              contains: query
+            }
+          } : {
+            eventId
           }
-        } : {
-          eventId
-        },
-        take: perPage,
-        skip: pageIndex * perPage,
-        orderBy: {
-          createdAt: 'desc'
-        }
-      })
-
-      const attendeesCount = await prisma.attendee.count({
-        where: {
-          eventId          
-        }
-      })
+        })
+      ])
 
       return reply.status(200).send({ 
         pageIndex,
