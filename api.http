@@ -13,7 +13,7 @@ POST http://localhost:3333/events/ce51712e-dfa7-4584-aa16-e0fc9193db9d/attendees
 Content-Type: application/json
 
 {
-  "name": "Ricardo Monteiro",
+  "namex": "Ricardo Monteiro",
   "email": "rcmonteiro@gmail.com"
 }
 
@@ -24,3 +24,11 @@ GET http://localhost:3333/events/ce51712e-dfa7-4584-aa16-e0fc9193db9d
 ###
 
 GET http://localhost:3333/attendees/2/badge
+
+###
+
+GET http://localhost:3333/attendees/2/check-in
+
+###
+
+GET http://localhost:3333/events/9e9bd979-9d10-4915-b339-3786b1634f33/attendees

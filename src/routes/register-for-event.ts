@@ -3,6 +3,7 @@ import { ZodTypeProvider } from "fastify-type-provider-zod"
 import { customAlphabet } from "nanoid"
 import { z } from "zod"
 import { prisma } from "../lib/prisma"
+import { BadRequest } from "./_errors/bad-request"
 
 
 export const registerForEvent = async (app: FastifyInstance) => {
@@ -10,6 +11,8 @@ export const registerForEvent = async (app: FastifyInstance) => {
     .withTypeProvider<ZodTypeProvider>()
     .post('/events/:eventId/attendees', { 
       schema: {
+        summary: 'Register an attendee',
+        tags: ['attendees'],
         body: z.object({
           name: z.string().min(4),
           email: z.string().email(),
@@ -48,13 +51,16 @@ export const registerForEvent = async (app: FastifyInstance) => {
         })
       ])
 
+      if (event === null) {
+        throw new BadRequest("Event not found")
+      }
+
       if (attendeeAlreadyRegistered !== null) {
-        throw new Error("Attendee is already registered to the event")
-        // return reply.status(401).send({ eventId: event.id })
+        throw new BadRequest("Attendee is already registered to the event")
       }
 
       if (event?.maximumAttendees && eventSeatsTaken >= event?.maximumAttendees) {
-        throw new Error("The maximum number of attendees for this event has been reached")
+        throw new BadRequest("The maximum number of attendees for this event has been reached")
       }
 
       const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVXZ', 6)
